@@ -1,0 +1,9 @@
+# docker-compose.yaml
+version: '3'
+
+services:
+  app:
+    build: .
+    command: ["python3", "app.py"]
+    ports:
+      - "5000:5000"
