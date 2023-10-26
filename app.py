@@ -1,5 +1,5 @@
 """
-Flame Checker
+Flame Check
 @author: Rodney Gauna
 @github: https://github.com/rodneygauna/H3O_Inferno
 """
