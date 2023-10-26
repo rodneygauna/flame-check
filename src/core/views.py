@@ -14,5 +14,5 @@ core_bp = Blueprint('core', __name__)
 def index():
     """Homepage"""
 
-    return render_template('index.html',
+    return render_template('core/index.html',
                            title='Flame Check')
