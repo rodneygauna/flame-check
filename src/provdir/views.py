@@ -1,6 +1,13 @@
+"""
+Flame Check
+Views for the Provider Directory API testing
+"""
+
 # Imports
 import requests
-from flask import render_template, Blueprint, request, redirect, url_for, jsonify
+from flask import (
+    render_template, Blueprint, request, redirect, url_for
+)
 
 # Blueprint
 provdir_bp = Blueprint('provdir', __name__)
