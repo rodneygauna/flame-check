@@ -11,11 +11,8 @@ from flask import (
 
 from src.provdir.test_connection import test_connection
 from src.provdir.endpoint_totals import get_endpoint_total
-from src.provdir.healthservice import (
-    get_first_entry, get_location, get_organization, get_endpoint,
-    get_name, get_service_category, get_service_type, get_specialty,
-    get_id, get_last_updated
-)
+from . import healthcareservice
+from . import practitioner
 
 # Blueprint
 provdir_bp = Blueprint('provdir', __name__)
@@ -84,22 +81,49 @@ def healthcareservice_test():
 
     # Get the first entry from the endpoint
     try:
-        first_entry = get_first_entry(base_url)
+        first_entry = healthcareservice.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
         return render_template('provdir/test_results.html', results=results)
 
     # Get the various fields from the first entry
     results = {
-        'location': get_location(first_entry),
-        'organization': get_organization(first_entry),
-        'endpoint': get_endpoint(first_entry),
-        'name': get_name(first_entry),
-        'service-category': get_service_category(first_entry),
-        'service-type': get_service_type(first_entry),
-        'specialty': get_specialty(first_entry),
-        '_id': get_id(first_entry),
-        '_lastUpdated': get_last_updated(first_entry)
+        'location': healthcareservice.get_location(first_entry),
+        'organization': healthcareservice.get_organization(first_entry),
+        'endpoint': healthcareservice.get_endpoint(first_entry),
+        'name': healthcareservice.get_name(first_entry),
+        'service-category': healthcareservice.get_service_category(first_entry),
+        'service-type': healthcareservice.get_service_type(first_entry),
+        'specialty': healthcareservice.get_specialty(first_entry),
+        '_id': healthcareservice.get_id(first_entry),
+        '_lastUpdated': healthcareservice.get_last_updated(first_entry)
+    }
+
+    return render_template('provdir/test_results.html',
+                           results=results)
+
+
+# Route - Test Practitioner Search Paramters
+@provdir_bp.route('/practitioner_test', methods=['GET'])
+def practitioner_test():
+    """Test Practitioner Search Parameters"""
+    # Get the base URL from the query string
+    base_url = request.args.get('base_url')
+
+    # Get the first entry from the endpoint
+    try:
+        first_entry = practitioner.get_first_entry(base_url)
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+        return render_template('provdir/test_results.html', results=results)
+
+    # Get the various fields from the first entry
+    results = {
+        'name': practitioner.get_name(first_entry),
+        'family-name': practitioner.get_family_name(first_entry),
+        'given-name': practitioner.get_given_name(first_entry),
+        '_id': practitioner.get_id(first_entry),
+        '_lastUpdated': practitioner.get_last_updated(first_entry)
     }
 
     return render_template('provdir/test_results.html',
