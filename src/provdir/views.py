@@ -76,7 +76,9 @@ def test_endpoints():
     results = {endpoint: get_endpoint_total(
         base_url, endpoint) for endpoint in endpoints}
 
-    return render_template('provdir/test_results.html', results=results)
+    return render_template('provdir/test_results.html',
+                           base_url=base_url,
+                           results=results)
 
 
 # Route - Test HealthcareService Search Paramters
@@ -264,7 +266,7 @@ def organizationaffiliation_test():
 
 # Route - Test PractitionerRole Search Paramters
 @provdir_bp.route('/practitionerrole_test', methods=['GET'])
-def pracitionerrole_test():
+def practitionerrole_test():
     """Test PractitionerRole Search Parameters"""
     # Get the base URL from the query string
     base_url = request.args.get('base_url')
