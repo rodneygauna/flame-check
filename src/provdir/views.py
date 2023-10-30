@@ -14,9 +14,11 @@ from src.provdir.endpoint_totals import get_endpoint_total
 from . import (
     healthcareservice,
     practitioner,
+    practitionerrole,
     insuranceplan,
     location,
     organization,
+    organizationaffiliation,
 )
 
 # Blueprint
@@ -222,6 +224,70 @@ def organization_test():
         'coverage-area': organization.get_coverage_area(first_entry),
         '_id': organization.get_id(first_entry),
         '_lastUpdated': organization.get_last_updated(first_entry)
+    }
+
+    return render_template('provdir/test_results.html',
+                           results=results)
+
+
+# Route - Test OrganizationAffiliation Search Paramters
+@provdir_bp.route('/organizationaffiliation_test', methods=['GET'])
+def organizationaffiliation_test():
+    """Test OrganizationAffiliation Search Parameters"""
+    # Get the base URL from the query string
+    base_url = request.args.get('base_url')
+
+    # Get the first entry from the endpoint
+    try:
+        first_entry = organizationaffiliation.get_first_entry(base_url)
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+        return render_template('provdir/test_results.html', results=results)
+
+    # Get the various fields from the first entry
+    results = {
+        'primary-organization': organizationaffiliation.get_primary_organization(first_entry),
+        'participating-organization': organizationaffiliation.get_participating_organization(first_entry),
+        'location': organizationaffiliation.get_location(first_entry),
+        'service': organizationaffiliation.get_service(first_entry),
+        'network': organizationaffiliation.get_network(first_entry),
+        'endpoint': organizationaffiliation.get_endpoint(first_entry),
+        'role': organizationaffiliation.get_role(first_entry),
+        'specialty': organizationaffiliation.get_specialty(first_entry),
+        '_id': organizationaffiliation.get_id(first_entry),
+        '_lastUpdated': organizationaffiliation.get_last_updated(first_entry)
+    }
+
+    return render_template('provdir/test_results.html',
+                           results=results)
+
+
+# Route - Test PractitionerRole Search Paramters
+@provdir_bp.route('/practitionerrole_test', methods=['GET'])
+def pracitionerrole_test():
+    """Test PractitionerRole Search Parameters"""
+    # Get the base URL from the query string
+    base_url = request.args.get('base_url')
+
+    # Get the first entry from the endpoint
+    try:
+        first_entry = practitionerrole.get_first_entry(base_url)
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+        return render_template('provdir/test_results.html', results=results)
+
+    # Get the various fields from the first entry
+    results = {
+        'practitioner': practitionerrole.get_practitioner(first_entry),
+        'organization': practitionerrole.get_organization(first_entry),
+        'location': practitionerrole.get_location(first_entry),
+        'service': practitionerrole.get_service(first_entry),
+        'network': practitionerrole.get_network(first_entry),
+        'endpoint': practitionerrole.get_endpoint(first_entry),
+        'role': practitionerrole.get_role(first_entry),
+        'specialty': practitionerrole.get_specialty(first_entry),
+        '_id': practitionerrole.get_id(first_entry),
+        '_lastUpdated': practitionerrole.get_last_updated(first_entry)
     }
 
     return render_template('provdir/test_results.html',
