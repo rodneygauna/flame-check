@@ -13,6 +13,7 @@ from src.provdir.test_connection import test_connection
 from src.provdir.endpoint_totals import get_endpoint_total
 from . import healthcareservice
 from . import practitioner
+from . import insuranceplan
 
 # Blueprint
 provdir_bp = Blueprint('provdir', __name__)
@@ -124,6 +125,37 @@ def practitioner_test():
         'given-name': practitioner.get_given_name(first_entry),
         '_id': practitioner.get_id(first_entry),
         '_lastUpdated': practitioner.get_last_updated(first_entry)
+    }
+
+    return render_template('provdir/test_results.html',
+                           results=results)
+
+
+# Route - Test InsurancePlan Search Paramters
+@provdir_bp.route('/insuranceplan_test', methods=['GET'])
+def insurancetype_test():
+    """Test InsuranceType Search Parameters"""
+    # Get the base URL from the query string
+    base_url = request.args.get('base_url')
+
+    # Get the first entry from the endpoint
+    try:
+        first_entry = insuranceplan.get_first_entry(base_url)
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+        return render_template('provdir/test_results.html', results=results)
+
+    # Get the various fields from the first entry
+    results = {
+        'administered-by': insuranceplan.get_administer_by(first_entry),
+        'owned-by': insuranceplan.get_owned_by(first_entry),
+        'coverage-area': insuranceplan.get_coverage_area(first_entry),
+        'name': insuranceplan.get_name(first_entry),
+        'plan-type': insuranceplan.get_plan_type(first_entry),
+        'type': insuranceplan.get_type(first_entry),
+        'identifier': insuranceplan.get_identifier(first_entry),
+        '_id': insuranceplan.get_id(first_entry),
+        '_lastUpdated': insuranceplan.get_last_updated(first_entry)
     }
 
     return render_template('provdir/test_results.html',
