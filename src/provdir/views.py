@@ -16,6 +16,7 @@ from . import (
     practitioner,
     insuranceplan,
     location,
+    organization,
 )
 
 # Blueprint
@@ -191,6 +192,36 @@ def location_test():
         'type': location.get_type(first_entry),
         '_id': location.get_id(first_entry),
         '_lastUpdated': location.get_last_updated(first_entry)
+    }
+
+    return render_template('provdir/test_results.html',
+                           results=results)
+
+
+# Route - Test Organization Search Paramters
+@provdir_bp.route('/organization_test', methods=['GET'])
+def organization_test():
+    """Test Organization Search Parameters"""
+    # Get the base URL from the query string
+    base_url = request.args.get('base_url')
+
+    # Get the first entry from the endpoint
+    try:
+        first_entry = organization.get_first_entry(base_url)
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+        return render_template('provdir/test_results.html', results=results)
+
+    # Get the various fields from the first entry
+    results = {
+        'part-of': organization.get_part_of(first_entry),
+        'endpoint': organization.get_endpoint(first_entry),
+        'address': organization.get_address(first_entry),
+        'name': organization.get_name(first_entry),
+        'type': organization.get_type(first_entry),
+        'coverage-area': organization.get_coverage_area(first_entry),
+        '_id': organization.get_id(first_entry),
+        '_lastUpdated': organization.get_last_updated(first_entry)
     }
 
     return render_template('provdir/test_results.html',
