@@ -1,6 +1,21 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Test Results</h1>
-<table>
+
+<!-- Placeholder -->
+<div id="placeholder">
+  <div class="d-flex justify-content-center">
+    <div
+      class="spinner-border text-primary"
+      style="width: 10rem; height: 10rem"
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<!-- Actual table (hidden by default) -->
+<table id="actualTable" class="table" style="display: none">
   <thead>
     <tr>
       <th>Endpoint</th>
@@ -19,4 +34,10 @@
   </tbody>
 </table>
 
+<script>
+  window.addEventListener("load", function () {
+    document.getElementById("placeholder").style.display = "none";
+    document.getElementById("actualTable").style.display = "table";
+  });
+</script>
 {% endblock content %}
