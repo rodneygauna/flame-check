@@ -76,7 +76,7 @@ def test_endpoints():
     results = {endpoint: get_endpoint_total(
         base_url, endpoint) for endpoint in endpoints}
 
-    return render_template('provdir/test_results.html',
+    return render_template('provdir/results_endpoints.html',
                            base_url=base_url,
                            results=results)
 
@@ -93,7 +93,8 @@ def healthcareservice_test():
         first_entry = healthcareservice.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/test_results.html', results=results)
+        return render_template('provdir/results_search_parameters.html',
+                               results=results)
 
     # Get the various fields from the first entry
     results = {
@@ -108,7 +109,7 @@ def healthcareservice_test():
         '_lastUpdated': healthcareservice.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/test_results.html',
+    return render_template('provdir/results_search_parameters.html',
                            results=results)
 
 
@@ -124,7 +125,8 @@ def practitioner_test():
         first_entry = practitioner.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/test_results.html', results=results)
+        return render_template('provdir/results_endpoints.html',
+                               results=results)
 
     # Get the various fields from the first entry
     results = {
@@ -135,7 +137,7 @@ def practitioner_test():
         '_lastUpdated': practitioner.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/test_results.html',
+    return render_template('provdir/results_endpoints.html',
                            results=results)
 
 
@@ -151,7 +153,8 @@ def insurancetype_test():
         first_entry = insuranceplan.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/test_results.html', results=results)
+        return render_template('provdir/results_endpoints.html',
+                               results=results)
 
     # Get the various fields from the first entry
     results = {
@@ -166,7 +169,7 @@ def insurancetype_test():
         '_lastUpdated': insuranceplan.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/test_results.html',
+    return render_template('provdir/results_endpoints.html',
                            results=results)
 
 
@@ -182,7 +185,8 @@ def location_test():
         first_entry = location.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/test_results.html', results=results)
+        return render_template('provdir/results_endpoints.html',
+                               results=results)
 
     # Get the various fields from the first entry
     results = {
@@ -198,7 +202,7 @@ def location_test():
         '_lastUpdated': location.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/test_results.html',
+    return render_template('provdir/results_endpoints.html',
                            results=results)
 
 
@@ -214,7 +218,8 @@ def organization_test():
         first_entry = organization.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/test_results.html', results=results)
+        return render_template('provdir/results_endpoints.html',
+                               results=results)
 
     # Get the various fields from the first entry
     results = {
@@ -228,7 +233,7 @@ def organization_test():
         '_lastUpdated': organization.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/test_results.html',
+    return render_template('provdir/results_endpoints.html',
                            results=results)
 
 
@@ -244,7 +249,8 @@ def organizationaffiliation_test():
         first_entry = organizationaffiliation.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/test_results.html', results=results)
+        return render_template('provdir/results_endpoints.html',
+                               results=results)
 
     # Get the various fields from the first entry
     results = {
@@ -260,7 +266,7 @@ def organizationaffiliation_test():
         '_lastUpdated': organizationaffiliation.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/test_results.html',
+    return render_template('provdir/results_endpoints.html',
                            results=results)
 
 
@@ -276,7 +282,8 @@ def practitionerrole_test():
         first_entry = practitionerrole.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/test_results.html', results=results)
+        return render_template('provdir/results_endpoints.html',
+                               results=results)
 
     # Get the various fields from the first entry
     results = {
@@ -292,5 +299,5 @@ def practitionerrole_test():
         '_lastUpdated': practitionerrole.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/test_results.html',
+    return render_template('provdir/results_endpoints.html',
                            results=results)

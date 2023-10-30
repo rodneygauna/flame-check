@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Test Results</h1>
+
+<!-- Placeholder -->
+<div id="placeholder">
+  <div class="d-flex justify-content-center">
+    <div
+      class="spinner-border text-primary"
+      style="width: 10rem; height: 10rem"
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<!-- Search Paramter Result Table -->
+<table class="table" id="actualTable" style="display: none">
+  <thead>
+    <tr>
+      <th>Search Parameter</th>
+      <th>Result</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for search_parameter, result in results.items() %}
+    <tr>
+      <td>{{ search_parameter }}</td>
+      <td>{{ result }}</td>
+      <td>
+        {% if search_parameter == 'location' %} ODS {% elif search_parameter ==
+        'organization' %} ODS {% elif search_parameter == 'endpoint' %} ODS {%
+        elif search_parameter == 'name' %} ODS {% elif search_parameter ==
+        'service-category' %} ODS {% elif search_parameter == 'service-type' %}
+        ODS {% elif search_parameter == 'specialty' %} ODS {% elif
+        search_parameter == '_id' %} ODS {% elif search_parameter ==
+        '_lastUpdated' %} ODS
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  window.addEventListener("load", function () {
+    document.getElementById("placeholder").style.display = "none";
+    document.getElementById("actualTable").style.display = "table";
+  });
+</script>
+{% endblock content %}
