@@ -7,7 +7,17 @@ Practitioner Endpoint
 import requests
 
 
-# Practitioner
+# Practitioner Comments
+search_parameter_comments = {
+    'name': 'Combination of provider.physician_first_name, provider.physician_middle_name, and provider.physician_last_name ',
+    'family-name': 'provider.physician_last_name',
+    'given-name': 'provider.physician_first_name and provider.physician_middle_name',
+    '_id': 'provider.external_provider_id',
+    '_lastUpdated': 'provider.external_change_date'
+}
+
+
+# Practitioner Endpoint
 def get_first_entry(base_url):
     """Get the first entry from the Practitioner endpoint"""
     try:

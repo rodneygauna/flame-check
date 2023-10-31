@@ -129,7 +129,7 @@ def practitioner_test():
         first_entry = practitioner.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_endpoints.html',
+        return render_template('provdir/results_search_parameters.html',
                                results=results,
                                search_parameter_comments=practitioner.search_parameter_comments)
 
@@ -142,8 +142,9 @@ def practitioner_test():
         '_lastUpdated': practitioner.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/results_endpoints.html',
-                           results=results)
+    return render_template('provdir/results_search_parameters.html',
+                           results=results,
+                           search_parameter_comments=practitioner.search_parameter_comments)
 
 
 # Route - Test InsurancePlan Search Paramters
