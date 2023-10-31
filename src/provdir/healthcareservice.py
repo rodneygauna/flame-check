@@ -7,7 +7,21 @@ HealthcareService Endpoint
 import requests
 
 
-# HealthcareService
+# HealthcareService Comments
+search_parameter_comments = {
+    'location': 'References PlannetLocation (medical_group_address.address_id)',
+    'organization': 'References PlannetOrganization (medical_group.external_medical_group_id)',
+    'endpoint': 'Currently not supported by HealthTrio',
+    'name': 'TODO: Find out the mapping for this field',
+    'service-category': 'Code value: provider_payor_provservicetypes.provservicetype Display value: payor_provservicetypes.provservicetype_description',
+    'service-type': 'HealthTrio populates "FILL" for this field',
+    'specialty': 'provider_medical_group_contract.taxonomy_code',
+    '_id': 'Combination of medical_group_address.provider_id, medical_group_address.medical_group_id, and medical_group_address.address_id',
+    '_lastUpdated': 'provider_payor_provservicetype.change_date (max value)'
+}
+
+
+# HealthcareService Elements
 def get_first_entry(base_url):
     """Get the first entry from the HealthcareService endpoint"""
     try:

@@ -29,15 +29,9 @@
       <td>{{ search_parameter }}</td>
       <td>{{ result }}</td>
       <td>
-        {% if search_parameter == 'location' %} ODS {% elif search_parameter ==
-        'organization' %} ODS {% elif search_parameter == 'endpoint' %} ODS {%
-        elif search_parameter == 'name' %} ODS {% elif search_parameter ==
-        'service-category' %} ODS {% elif search_parameter == 'service-type' %}
-        ODS {% elif search_parameter == 'specialty' %} ODS {% elif
-        search_parameter == '_id' %} ODS {% elif search_parameter ==
-        '_lastUpdated' %} ODS
+        {% if search_parameter in search_parameter_comments %} {{
+        search_parameter_comments[search_parameter] }} {% endif %}
       </td>
-      {% endif %}
     </tr>
     {% endfor %}
   </tbody>

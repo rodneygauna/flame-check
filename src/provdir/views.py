@@ -110,7 +110,8 @@ def healthcareservice_test():
     }
 
     return render_template('provdir/results_search_parameters.html',
-                           results=results)
+                           results=results,
+                           search_parameter_comments=healthcareservice.search_parameter_comments)
 
 
 # Route - Test Practitioner Search Paramters
