@@ -69,7 +69,8 @@ def test_endpoints():
         'Location',
         'HealthcareService',
         'Endpoint',
-        'PractitionerRole'
+        'PractitionerRole',
+        'InsurancePlan',
     ]
 
     # Store results in a dictionary
@@ -144,7 +145,7 @@ def practitioner_test():
 
 # Route - Test InsurancePlan Search Paramters
 @provdir_bp.route('/insuranceplan_test', methods=['GET'])
-def insurancetype_test():
+def insuranceplan_test():
     """Test InsuranceType Search Parameters"""
     # Get the base URL from the query string
     base_url = request.args.get('base_url')
@@ -170,8 +171,9 @@ def insurancetype_test():
         '_lastUpdated': insuranceplan.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/results_endpoints.html',
-                           results=results)
+    return render_template('provdir/results_search_parameters.html',
+                           results=results,
+                           search_parameter_comments=insuranceplan.search_parameter_comments)
 
 
 # Route - Test Location Search Paramters

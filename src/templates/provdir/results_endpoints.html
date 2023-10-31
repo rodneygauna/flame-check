@@ -43,6 +43,8 @@
             href="#"
           {% elif endpoint == 'PractitionerRole' %}
             href="{{ url_for('provdir.practitionerrole_test', base_url=base_url) }}"
+          {% elif endpoint == 'InsurancePlan' %}\
+            href="{{ url_for('provdir.insuranceplan_test', base_url=base_url) }}"
           {% endif %}
           >Test Search Parameters</a
         >

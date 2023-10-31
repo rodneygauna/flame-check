@@ -7,7 +7,21 @@ InsurancePlan Endpoint
 import requests
 
 
-# InsurancePlan
+# InsurancePlan Comments
+search_parameter_comments = {
+    'administered-by': 'References PlannetOrganization (medical_group.external_medical_group_id)',
+    'owned-by': 'References PlannetOrganization (medical_group.external_medical_group_id)',
+    'coverage-area': 'Currently not supported by HealthTrio',
+    'name': 'benefit_plan_name.plan_name',
+    'plan-type': 'Currently not supported by HealthTrio',
+    'identifier': 'Currently not supported by HealthTrio',
+    'type': 'business.business_name',
+    '_id': 'benefit_plan_.external_benefit_plan_id',
+    '_lastUpdated': 'benefit_plan.external_change_date (max value)',
+}
+
+
+# InsurancePlan Elements
 def get_first_entry(base_url):
     """Get the first entry from the InsurancePlan endpoint"""
     try:
@@ -63,7 +77,7 @@ def get_plan_type(first_entry):
 def get_identifier(first_entry):
     """Get the identifier from the first entry"""
     try:
-        return first_entry['resource']['identifier'][0]['vale']
+        return first_entry['resource']['identifier'][0]['value']
     except KeyError:
         return "Identifier not found"
 
