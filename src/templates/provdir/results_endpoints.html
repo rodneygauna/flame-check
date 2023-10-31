@@ -35,6 +35,8 @@
             href="{{ url_for('provdir.practitioner_test', base_url=base_url) }}"
           {% elif endpoint == 'Organization' %}
             href="{{ url_for('provdir.organization_test', base_url=base_url) }}"
+          {% elif endpoint == 'OrganizationAffiliation' %}
+            href="{{ url_for('provdir.organizationaffiliation_test', base_url=base_url) }}"
           {% elif endpoint == 'Location' %}
             href="{{ url_for('provdir.location_test', base_url=base_url) }}"
           {% elif endpoint == 'HealthcareService' %}

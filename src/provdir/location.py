@@ -7,7 +7,22 @@ Location Endpoint
 import requests
 
 
-# Location
+# Location Comments
+search_parameter_comments = {
+    'partOf': 'Currently not supported by HealthTrio',
+    'organization': 'References PlannetOrganization (medical_group.external_medical_group_id)',
+    'endpoint': 'Currently not supported by HealthTrio',
+    'address-city': 'medical_group_address.city',
+    'address-state': 'medical_group_address.state',
+    'address-postalcode': 'medical_group_address.zip',
+    'address': 'Generated from medical_group_address.address1, medical_group_address.address2, medical_group_address.city, medical_group_address.state, medical_group_address.zip, and medical_group_address.country',
+    'type': 'Currently not supported by HealthTrio',
+    '_id': 'medical_group_address.address_id',
+    '_lastUpdated': 'medical_group_address.external_change_date'
+}
+
+
+# Location Elements
 def get_first_entry(base_url):
     """Get the first entry from the Location endpoint"""
     try:
@@ -25,7 +40,7 @@ def get_part_of(first_entry):
     try:
         return first_entry['resource']['partOf']['reference']
     except KeyError:
-        return "Part Of not found"
+        return "PartOf not found"
 
 
 def get_organization(first_entry):

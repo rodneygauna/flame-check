@@ -66,6 +66,7 @@ def test_endpoints():
     endpoints = [
         'Practitioner',
         'Organization',
+        'OrganizationAffiliation',
         'Location',
         'HealthcareService',
         'Endpoint',
@@ -95,7 +96,8 @@ def healthcareservice_test():
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
         return render_template('provdir/results_search_parameters.html',
-                               results=results)
+                               results=results,
+                               search_parameter_comments=healthcareservice.search_parameter_comments)
 
     # Get the various fields from the first entry
     results = {
@@ -128,7 +130,8 @@ def practitioner_test():
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
         return render_template('provdir/results_endpoints.html',
-                               results=results)
+                               results=results,
+                               search_parameter_comments=practitioner.search_parameter_comments)
 
     # Get the various fields from the first entry
     results = {
@@ -155,7 +158,7 @@ def insuranceplan_test():
         first_entry = insuranceplan.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_endpoints.html',
+        return render_template('provdir/results_search_parameters.html',
                                results=results)
 
     # Get the various fields from the first entry
@@ -188,12 +191,12 @@ def location_test():
         first_entry = location.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_endpoints.html',
+        return render_template('provdir/results_search_parameters.html',
                                results=results)
 
     # Get the various fields from the first entry
     results = {
-        'part-of': location.get_part_of(first_entry),
+        'partOf': location.get_part_of(first_entry),
         'organization': location.get_organization(first_entry),
         'endpoint': location.get_endpoint(first_entry),
         'address-city': location.get_address_city(first_entry),
@@ -205,8 +208,9 @@ def location_test():
         '_lastUpdated': location.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/results_endpoints.html',
-                           results=results)
+    return render_template('provdir/results_search_parameters.html',
+                           results=results,
+                           search_parameter_comments=location.search_parameter_comments)
 
 
 # Route - Test Organization Search Paramters
@@ -221,12 +225,13 @@ def organization_test():
         first_entry = organization.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_endpoints.html',
-                               results=results)
+        return render_template('provdir/results_search_parameters.html',
+                               results=results,
+                               search_parameter_comments=organization.search_parameter_comments)
 
     # Get the various fields from the first entry
     results = {
-        'part-of': organization.get_part_of(first_entry),
+        'partOf': organization.get_part_of(first_entry),
         'endpoint': organization.get_endpoint(first_entry),
         'address': organization.get_address(first_entry),
         'name': organization.get_name(first_entry),
@@ -236,8 +241,9 @@ def organization_test():
         '_lastUpdated': organization.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/results_endpoints.html',
-                           results=results)
+    return render_template('provdir/results_search_parameters.html',
+                           results=results,
+                           search_parameter_comments=organization.search_parameter_comments)
 
 
 # Route - Test OrganizationAffiliation Search Paramters
@@ -252,8 +258,9 @@ def organizationaffiliation_test():
         first_entry = organizationaffiliation.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_endpoints.html',
-                               results=results)
+        return render_template('provdir/results_search_parameters.html',
+                               results=results,
+                               search_parameter_comments=organizationaffiliation.search_parameter_comments)
 
     # Get the various fields from the first entry
     results = {
@@ -269,8 +276,9 @@ def organizationaffiliation_test():
         '_lastUpdated': organizationaffiliation.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/results_endpoints.html',
-                           results=results)
+    return render_template('provdir/results_search_parameters.html',
+                           results=results,
+                           search_parameter_comments=organizationaffiliation.search_parameter_comments)
 
 
 # Route - Test PractitionerRole Search Paramters
@@ -285,8 +293,9 @@ def practitionerrole_test():
         first_entry = practitionerrole.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_endpoints.html',
-                               results=results)
+        return render_template('provdir/results_search_parameters.html',
+                               results=results,
+                               search_parameter_comments=practitionerrole.search_parameter_comments)
 
     # Get the various fields from the first entry
     results = {
@@ -302,5 +311,6 @@ def practitionerrole_test():
         '_lastUpdated': practitionerrole.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/results_endpoints.html',
-                           results=results)
+    return render_template('provdir/results_search_parameters.html',
+                           results=results,
+                           search_parameter_comments=practitionerrole.search_parameter_comments)

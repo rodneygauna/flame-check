@@ -7,7 +7,22 @@ PractitionerRole Endpoint
 import requests
 
 
-# PractitionerRole
+# PractitionerRole Comments
+search_parameter_comments = {
+    'practitioner': 'References PlannetPractitioner (provider.external_provider_id)',
+    'organization': 'References PlannetOrganization (medical_group.external_medical_group_id)',
+    'location': 'References PlannetLocation (medical_group_address.address_id)',
+    'service': 'References PlannetHealthcareService (Combination of medical_group_address.provider_id, medical_group_address.medical_group_id, and medical_group_address.address_id)',
+    'network': 'References PlannetNetwork (network.network_name)',
+    'endpoint': 'Currently not supported by HealthTrio',
+    'role': 'Currently not supported by HealthTrio',
+    'specialty': 'Medical Degree: provider_board_certification.specialty',
+    '_id': 'Combination of provider_medical_group_address.external_provider_id and provider_medical_group_address.external_medical_group_id',
+    '_lastUpdated': 'medical_group_address.external_change_date'
+}
+
+
+# PractitionerRole Elements
 def get_first_entry(base_url):
     """Get the first entry from the PractitionerRole endpoint"""
     try:

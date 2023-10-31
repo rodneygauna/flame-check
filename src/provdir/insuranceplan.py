@@ -17,7 +17,7 @@ search_parameter_comments = {
     'identifier': 'Currently not supported by HealthTrio',
     'type': 'business.business_name',
     '_id': 'benefit_plan_.external_benefit_plan_id',
-    '_lastUpdated': 'benefit_plan.external_change_date (max value)',
+    '_lastUpdated': 'benefit_plan.external_change_date',
 }
 
 
