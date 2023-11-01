@@ -2,7 +2,11 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ url_for('core.index') }}">
-      <img src="#" alt="logo" />
+      <img
+        src="{{ url_for('static', filename='logo/logo-385x591.png') }}"
+        alt="logo"
+        style="max-width: 38px"
+      />
       Flame Check
     </a>
     <button
