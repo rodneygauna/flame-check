@@ -22,10 +22,19 @@
           <a class="nav-link" href="{{ url_for('core.index') }}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Check APIs</a>
+          <a class="nav-link disabled" href="#" aria-disabled="true"
+            >Patient Access API</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Help</a>
+          <a href="{{ url_for('provdir.index')}}" class="nav-link"
+            >Provider Directory API</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" aria-disabled="true"
+            >Drug Formulary</a
+          >
         </li>
       </ul>
     </div>

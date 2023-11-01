@@ -10,8 +10,8 @@ import requests
 # Practitioner Comments
 search_parameter_comments = {
     'name': 'Combination of provider.physician_first_name, provider.physician_middle_name, and provider.physician_last_name ',
-    'family-name': 'provider.physician_last_name',
-    'given-name': 'provider.physician_first_name and provider.physician_middle_name',
+    'family': 'provider.physician_last_name',
+    'given': 'provider.physician_first_name and provider.physician_middle_name',
     '_id': 'provider.external_provider_id',
     '_lastUpdated': 'provider.external_change_date'
 }
@@ -38,7 +38,7 @@ def get_name(first_entry):
         return "Name not found"
 
 
-def get_family_name(first_entry):
+def get_family(first_entry):
     """Get the family name from the first entry"""
     try:
         return first_entry['resource']['name'][0]['family']
@@ -46,7 +46,7 @@ def get_family_name(first_entry):
         return "Family name not found"
 
 
-def get_given_name(first_entry):
+def get_given(first_entry):
     """Get the given name from the first entry"""
     try:
         return first_entry['resource']['name'][0]['given'][0]

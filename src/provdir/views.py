@@ -18,7 +18,7 @@ from . import (
     insuranceplan,
     location,
     organization,
-    organizationaffiliation,
+    organizationaffiliation as oa,
 )
 
 # Blueprint
@@ -49,7 +49,8 @@ def index():
         else:
             return render_template('provdir/index.html',
                                    title='Flame Check - Provider Directory',
-                                   connection_result=connection_result['message'])
+                                   connection_result=(
+                                       connection_result['message']))
 
     return render_template('provdir/index.html',
                            title='Flame Check - Provider Directory')
@@ -64,14 +65,14 @@ def test_endpoints():
 
     # Endpoints to test
     endpoints = [
-        'Practitioner',
+        'Endpoint',
+        'HealthcareService',
+        'InsurancePlan',
+        'Location',
         'Organization',
         'OrganizationAffiliation',
-        'Location',
-        'HealthcareService',
-        'Endpoint',
+        'Practitioner',
         'PractitionerRole',
-        'InsurancePlan',
     ]
 
     # Store results in a dictionary
@@ -79,6 +80,7 @@ def test_endpoints():
         base_url, endpoint) for endpoint in endpoints}
 
     return render_template('provdir/results_endpoints.html',
+                           title='Flame Check - Test Endpoints',
                            base_url=base_url,
                            results=results)
 
@@ -96,16 +98,21 @@ def healthcareservice_test():
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
         return render_template('provdir/results_search_parameters.html',
+                               title='Flame Check - Test HealthcareService',
                                results=results,
-                               search_parameter_comments=healthcareservice.search_parameter_comments)
+                               search_parameter_comments=(
+                                   healthcareservice.search_parameter_comments
+                               ))
 
     # Get the various fields from the first entry
     results = {
         'location': healthcareservice.get_location(first_entry),
+        'coverage-area': healthcareservice.get_coverage_area(first_entry),
         'organization': healthcareservice.get_organization(first_entry),
         'endpoint': healthcareservice.get_endpoint(first_entry),
         'name': healthcareservice.get_name(first_entry),
-        'service-category': healthcareservice.get_service_category(first_entry),
+        'service-category': healthcareservice.get_service_category(
+            first_entry),
         'service-type': healthcareservice.get_service_type(first_entry),
         'specialty': healthcareservice.get_specialty(first_entry),
         '_id': healthcareservice.get_id(first_entry),
@@ -113,38 +120,10 @@ def healthcareservice_test():
     }
 
     return render_template('provdir/results_search_parameters.html',
+                           title='Flame Check - Test HealthcareService',
                            results=results,
-                           search_parameter_comments=healthcareservice.search_parameter_comments)
-
-
-# Route - Test Practitioner Search Paramters
-@provdir_bp.route('/practitioner_test', methods=['GET'])
-def practitioner_test():
-    """Test Practitioner Search Parameters"""
-    # Get the base URL from the query string
-    base_url = request.args.get('base_url')
-
-    # Get the first entry from the endpoint
-    try:
-        first_entry = practitioner.get_first_entry(base_url)
-    except requests.exceptions.RequestException as e:
-        results = {'error': str(e)}
-        return render_template('provdir/results_search_parameters.html',
-                               results=results,
-                               search_parameter_comments=practitioner.search_parameter_comments)
-
-    # Get the various fields from the first entry
-    results = {
-        'name': practitioner.get_name(first_entry),
-        'family-name': practitioner.get_family_name(first_entry),
-        'given-name': practitioner.get_given_name(first_entry),
-        '_id': practitioner.get_id(first_entry),
-        '_lastUpdated': practitioner.get_last_updated(first_entry)
-    }
-
-    return render_template('provdir/results_search_parameters.html',
-                           results=results,
-                           search_parameter_comments=practitioner.search_parameter_comments)
+                           search_parameter_comments=(
+                               healthcareservice.search_parameter_comments))
 
 
 # Route - Test InsurancePlan Search Paramters
@@ -160,6 +139,7 @@ def insuranceplan_test():
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
         return render_template('provdir/results_search_parameters.html',
+                               title='Flame Check - Test InsurancePlan',
                                results=results)
 
     # Get the various fields from the first entry
@@ -169,15 +149,17 @@ def insuranceplan_test():
         'coverage-area': insuranceplan.get_coverage_area(first_entry),
         'name': insuranceplan.get_name(first_entry),
         'plan-type': insuranceplan.get_plan_type(first_entry),
-        'type': insuranceplan.get_type(first_entry),
         'identifier': insuranceplan.get_identifier(first_entry),
         '_id': insuranceplan.get_id(first_entry),
-        '_lastUpdated': insuranceplan.get_last_updated(first_entry)
+        '_lastUpdated': insuranceplan.get_last_updated(first_entry),
+        'type': insuranceplan.get_type(first_entry),
     }
 
     return render_template('provdir/results_search_parameters.html',
+                           title='Flame Check - Test InsurancePlan',
                            results=results,
-                           search_parameter_comments=insuranceplan.search_parameter_comments)
+                           search_parameter_comments=(
+                               insuranceplan.search_parameter_comments))
 
 
 # Route - Test Location Search Paramters
@@ -193,11 +175,12 @@ def location_test():
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
         return render_template('provdir/results_search_parameters.html',
+                               title='Flame Check - Test Location',
                                results=results)
 
     # Get the various fields from the first entry
     results = {
-        'partOf': location.get_part_of(first_entry),
+        'partof': location.get_part_of(first_entry),
         'organization': location.get_organization(first_entry),
         'endpoint': location.get_endpoint(first_entry),
         'address-city': location.get_address_city(first_entry),
@@ -210,8 +193,10 @@ def location_test():
     }
 
     return render_template('provdir/results_search_parameters.html',
+                           title='Flame Check - Test Location',
                            results=results,
-                           search_parameter_comments=location.search_parameter_comments)
+                           search_parameter_comments=(
+                               location.search_parameter_comments))
 
 
 # Route - Test Organization Search Paramters
@@ -227,24 +212,28 @@ def organization_test():
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
         return render_template('provdir/results_search_parameters.html',
+                               title='Flame Check - Test Organization',
                                results=results,
-                               search_parameter_comments=organization.search_parameter_comments)
+                               search_parameter_comments=(
+                                   organization.search_parameter_comments))
 
     # Get the various fields from the first entry
     results = {
-        'partOf': organization.get_part_of(first_entry),
+        'partof': organization.get_part_of(first_entry),
         'endpoint': organization.get_endpoint(first_entry),
         'address': organization.get_address(first_entry),
         'name': organization.get_name(first_entry),
-        'type': organization.get_type(first_entry),
-        'coverage-area': organization.get_coverage_area(first_entry),
         '_id': organization.get_id(first_entry),
-        '_lastUpdated': organization.get_last_updated(first_entry)
+        '_lastUpdated': organization.get_last_updated(first_entry),
+        'type': organization.get_type(first_entry),
+        'coverage-area': organization.get_coverage_area(first_entry)
     }
 
     return render_template('provdir/results_search_parameters.html',
+                           title='Flame Check - Test Organization',
                            results=results,
-                           search_parameter_comments=organization.search_parameter_comments)
+                           search_parameter_comments=(
+                               organization.search_parameter_comments))
 
 
 # Route - Test OrganizationAffiliation Search Paramters
@@ -256,30 +245,72 @@ def organizationaffiliation_test():
 
     # Get the first entry from the endpoint
     try:
-        first_entry = organizationaffiliation.get_first_entry(base_url)
+        first_entry = oa.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
         return render_template('provdir/results_search_parameters.html',
+                               title=(
+                                   'Flame Check - Test OrganizationAffiliation'
+                               ),
                                results=results,
-                               search_parameter_comments=organizationaffiliation.search_parameter_comments)
+                               search_parameter_comments=(
+                                   oa.search_parameter_comments))
 
     # Get the various fields from the first entry
     results = {
-        'primary-organization': organizationaffiliation.get_primary_organization(first_entry),
-        'participating-organization': organizationaffiliation.get_participating_organization(first_entry),
-        'location': organizationaffiliation.get_location(first_entry),
-        'service': organizationaffiliation.get_service(first_entry),
-        'network': organizationaffiliation.get_network(first_entry),
-        'endpoint': organizationaffiliation.get_endpoint(first_entry),
-        'role': organizationaffiliation.get_role(first_entry),
-        'specialty': organizationaffiliation.get_specialty(first_entry),
-        '_id': organizationaffiliation.get_id(first_entry),
-        '_lastUpdated': organizationaffiliation.get_last_updated(first_entry)
+        'primary-organization': oa.get_primary_organization(first_entry),
+        'participating-organization': oa.get_participating_organization(
+            first_entry),
+        'location': oa.get_location(first_entry),
+        'service': oa.get_service(first_entry),
+        'network': oa.get_network(first_entry),
+        'endpoint': oa.get_endpoint(first_entry),
+        'role': oa.get_role(first_entry),
+        'specialty': oa.get_specialty(first_entry),
+        '_id': oa.get_id(first_entry),
+        '_lastUpdated': oa.get_last_updated(first_entry)
     }
 
     return render_template('provdir/results_search_parameters.html',
+                           title='Flame Check - Test OrganizationAffiliation',
                            results=results,
-                           search_parameter_comments=organizationaffiliation.search_parameter_comments)
+                           search_parameter_comments=(
+                               oa.search_parameter_comments))
+
+
+# Route - Test Practitioner Search Paramters
+@provdir_bp.route('/practitioner_test', methods=['GET'])
+def practitioner_test():
+    """Test Practitioner Search Parameters"""
+    # Get the base URL from the query string
+    base_url = request.args.get('base_url')
+
+    # Get the first entry from the endpoint
+    try:
+        first_entry = practitioner.get_first_entry(base_url)
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+        return render_template('provdir/results_search_parameters.html',
+                               title='Flame Check - Test Practitioner',
+                               results=results,
+                               search_parameter_comments=(
+                                   practitioner.search_parameter_comments))
+
+    # Get the various fields from the first entry
+    results = {
+        'name': practitioner.get_name(first_entry),
+        '_id': practitioner.get_id(first_entry),
+        '_lastUpdated': practitioner.get_last_updated(first_entry),
+        'family': practitioner.get_family(first_entry),
+        'given': practitioner.get_given(first_entry),
+    }
+
+    return render_template('provdir/results_search_parameters.html',
+                           title='Flame Check - Test Practitioner',
+                           results=results,
+                           search_parameter_comments=(
+                               practitioner.search_parameter_comments
+                           ))
 
 
 # Route - Test PractitionerRole Search Paramters
@@ -295,8 +326,11 @@ def practitionerrole_test():
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
         return render_template('provdir/results_search_parameters.html',
+                               title='Flame Check - Test PractitionerRole',
                                results=results,
-                               search_parameter_comments=practitionerrole.search_parameter_comments)
+                               search_parameter_comments=(
+                                   practitionerrole.search_parameter_comments
+                               ))
 
     # Get the various fields from the first entry
     results = {
@@ -313,5 +347,8 @@ def practitionerrole_test():
     }
 
     return render_template('provdir/results_search_parameters.html',
+                           title='Flame Check - Test PractitionerRole',
                            results=results,
-                           search_parameter_comments=practitionerrole.search_parameter_comments)
+                           search_parameter_comments=(
+                               practitionerrole.search_parameter_comments
+                           ))

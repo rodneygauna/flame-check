@@ -12,6 +12,7 @@ search_parameter_comments = {
     'location': 'References PlannetLocation (medical_group_address.address_id)',
     'organization': 'References PlannetOrganization (medical_group.external_medical_group_id)',
     'endpoint': 'Currently not supported by HealthTrio',
+    'coverage-area': 'Currently not supported by HealthTrio',
     'name': 'TODO: Find out the mapping for this field',
     'service-category': 'Code value: provider_payor_provservicetypes.provservicetype Display value: payor_provservicetypes.provservicetype_description',
     'service-type': 'HealthTrio populates "FILL" for this field',
@@ -56,6 +57,14 @@ def get_endpoint(first_entry):
         return first_entry['resource']['endpoint'][0]['reference']
     except KeyError:
         return "Endpoint not found"
+
+
+def get_coverage_area(first_entry):
+    """Get the coverage area from the first entry"""
+    try:
+        return first_entry['resource']['coverageArea'][0]['reference']
+    except KeyError:
+        return "Coverage Area not found"
 
 
 def get_name(first_entry):

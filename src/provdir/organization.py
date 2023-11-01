@@ -9,7 +9,7 @@ import requests
 
 # Organization Comments
 search_parameter_comments = {
-    'partOf': 'Currently not supported by HealthTrio',
+    'partof': 'Currently not supported by HealthTrio',
     'endpoint': 'Currently not supported by HealthTrio',
     'address-city': 'payor_address.city or medical_group_address.city',
     'address-state': 'payor_address.state or medical_group_address.state',
@@ -37,7 +37,7 @@ def get_first_entry(base_url):
 
 
 def get_part_of(first_entry):
-    """Get the partOf from the first entry"""
+    """Get the partof from the first entry"""
     try:
         return first_entry['resource']['partOf']['reference']
     except KeyError:
