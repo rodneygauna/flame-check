@@ -15,7 +15,8 @@ search_parameter_comments = {
     'doseform': 'This search parameter is not supported by HealthTrio '
                 'nor does it appear in the IG examples for '
                 'MedicationKnowledge as a data element',
-    '_id': 'Combination of formulary_drug.formulary_id and formulary_drug.rxcui',
+    '_id': 'Combination of formulary_drug.formulary_id and '
+           'formulary_drug.rxcui',
     '_lastUpdated': 'HealthTrio will populate this field with the '
                     'timestamp of when the record was last updated'
 }
