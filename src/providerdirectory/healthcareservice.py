@@ -9,15 +9,22 @@ import requests
 
 # HealthcareService Comments
 search_parameter_comments = {
-    'location': 'References PlannetLocation (medical_group_address.address_id)',
-    'organization': 'References PlannetOrganization (medical_group.external_medical_group_id)',
+    'location': 'References PlannetLocation '
+                '(medical_group_address.address_id)',
+    'organization': 'References PlannetOrganization '
+    '(medical_group.external_medical_group_id)',
     'endpoint': 'Currently not supported by HealthTrio',
     'coverage-area': 'Currently not supported by HealthTrio',
     'name': 'TODO: Find out the mapping for this field',
-    'service-category': 'Code value: provider_payor_provservicetypes.provservicetype Display value: payor_provservicetypes.provservicetype_description',
+    'service-category': 'Code value: '
+                        'provider_payor_provservicetypes.provservicetype '
+                        'Display value: '
+                        'payor_provservicetypes.provservicetype_description',
     'service-type': 'HealthTrio populates "FILL" for this field',
     'specialty': 'provider_medical_group_contract.taxonomy_code',
-    '_id': 'Combination of medical_group_address.provider_id, medical_group_address.medical_group_id, and medical_group_address.address_id',
+    '_id': 'Combination of medical_group_address.provider_id, '
+           'medical_group_address.medical_group_id, '
+           'and medical_group_address.address_id',
     '_lastUpdated': 'provider_payor_provservicetype.change_date (max value)'
 }
 
@@ -86,7 +93,8 @@ def get_service_category(first_entry):
 def get_service_type(first_entry):
     """Get the service type from the first entry"""
     try:
-        return first_entry['resource']['extension'][0]['extension'][0]['valueCodeableConcept']['coding'][0]['code']
+        return first_entry['resource']['extension'][0]['extension'][0][
+            'valueCodeableConcept']['coding'][0]['code']
     except KeyError:
         return "Service Type not found"
 
