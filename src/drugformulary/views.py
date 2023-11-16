@@ -90,7 +90,8 @@ def medicationknowledge_test():
                                title='Flame Check - Test MedicationKnowledge',
                                results=results,
                                search_parameter_comments=(
-                                   medicationknowledge.search_parameter_comments
+                                   medicationknowledge
+                                   .search_parameter_comments
                                ))
 
     # Get the various fields from the first entry
