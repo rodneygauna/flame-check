@@ -9,8 +9,8 @@ from flask import (
     render_template, Blueprint, request, redirect, url_for
 )
 
-from src.provdir.test_connection import test_connection
-from src.provdir.endpoint_totals import get_endpoint_total
+from .test_connection import test_connection
+from .endpoint_totals import get_endpoint_total
 from . import (
     healthcareservice,
     practitioner,
@@ -79,7 +79,7 @@ def test_endpoints():
     results = {endpoint: get_endpoint_total(
         base_url, endpoint) for endpoint in endpoints}
 
-    return render_template('provdir/results_endpoints.html',
+    return render_template('global/results_endpoints.html',
                            title='Flame Check - Test Endpoints',
                            base_url=base_url,
                            results=results)
@@ -97,7 +97,7 @@ def healthcareservice_test():
         first_entry = healthcareservice.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_search_parameters.html',
+        return render_template('global/results_search_parameters.html',
                                title='Flame Check - Test HealthcareService',
                                results=results,
                                search_parameter_comments=(
@@ -119,7 +119,7 @@ def healthcareservice_test():
         '_lastUpdated': healthcareservice.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/results_search_parameters.html',
+    return render_template('global/results_search_parameters.html',
                            title='Flame Check - Test HealthcareService',
                            results=results,
                            search_parameter_comments=(
@@ -138,7 +138,7 @@ def insuranceplan_test():
         first_entry = insuranceplan.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_search_parameters.html',
+        return render_template('global/results_search_parameters.html',
                                title='Flame Check - Test InsurancePlan',
                                results=results)
 
@@ -155,7 +155,7 @@ def insuranceplan_test():
         'type': insuranceplan.get_type(first_entry),
     }
 
-    return render_template('provdir/results_search_parameters.html',
+    return render_template('global/results_search_parameters.html',
                            title='Flame Check - Test InsurancePlan',
                            results=results,
                            search_parameter_comments=(
@@ -174,7 +174,7 @@ def location_test():
         first_entry = location.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_search_parameters.html',
+        return render_template('global/results_search_parameters.html',
                                title='Flame Check - Test Location',
                                results=results)
 
@@ -192,7 +192,7 @@ def location_test():
         '_lastUpdated': location.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/results_search_parameters.html',
+    return render_template('global/results_search_parameters.html',
                            title='Flame Check - Test Location',
                            results=results,
                            search_parameter_comments=(
@@ -211,7 +211,7 @@ def organization_test():
         first_entry = organization.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_search_parameters.html',
+        return render_template('global/results_search_parameters.html',
                                title='Flame Check - Test Organization',
                                results=results,
                                search_parameter_comments=(
@@ -229,7 +229,7 @@ def organization_test():
         'coverage-area': organization.get_coverage_area(first_entry)
     }
 
-    return render_template('provdir/results_search_parameters.html',
+    return render_template('global/results_search_parameters.html',
                            title='Flame Check - Test Organization',
                            results=results,
                            search_parameter_comments=(
@@ -248,7 +248,7 @@ def organizationaffiliation_test():
         first_entry = oa.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_search_parameters.html',
+        return render_template('global/results_search_parameters.html',
                                title=(
                                    'Flame Check - Test OrganizationAffiliation'
                                ),
@@ -271,7 +271,7 @@ def organizationaffiliation_test():
         '_lastUpdated': oa.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/results_search_parameters.html',
+    return render_template('global/results_search_parameters.html',
                            title='Flame Check - Test OrganizationAffiliation',
                            results=results,
                            search_parameter_comments=(
@@ -290,7 +290,7 @@ def practitioner_test():
         first_entry = practitioner.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_search_parameters.html',
+        return render_template('global/results_search_parameters.html',
                                title='Flame Check - Test Practitioner',
                                results=results,
                                search_parameter_comments=(
@@ -305,7 +305,7 @@ def practitioner_test():
         'given': practitioner.get_given(first_entry),
     }
 
-    return render_template('provdir/results_search_parameters.html',
+    return render_template('global/results_search_parameters.html',
                            title='Flame Check - Test Practitioner',
                            results=results,
                            search_parameter_comments=(
@@ -325,7 +325,7 @@ def practitionerrole_test():
         first_entry = practitionerrole.get_first_entry(base_url)
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
-        return render_template('provdir/results_search_parameters.html',
+        return render_template('global/results_search_parameters.html',
                                title='Flame Check - Test PractitionerRole',
                                results=results,
                                search_parameter_comments=(
@@ -346,7 +346,7 @@ def practitionerrole_test():
         '_lastUpdated': practitionerrole.get_last_updated(first_entry)
     }
 
-    return render_template('provdir/results_search_parameters.html',
+    return render_template('global/results_search_parameters.html',
                            title='Flame Check - Test PractitionerRole',
                            results=results,
                            search_parameter_comments=(

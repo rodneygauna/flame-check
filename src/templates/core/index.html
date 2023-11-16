@@ -65,16 +65,17 @@
     <div class="card" aria-hidden="true">
       <div class="card-body">
         <h5 class="card-title">Drug Formulary API</h5>
-        <p class="card-text placeholder-glow">
-          <span class="placeholder col-4"></span>
-          <span class="placeholder col-6"></span>
-          <span class="placeholder col-8"></span>
-          <span class="placeholder col-2"></span>
+        <p class="card-text">
+          Test the
+          <a
+            href="https://build.fhir.org/ig/HL7/davinci-pdex-formulary/CapabilityStatement-usdf-server.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Drug Formualry API search paramters</a
+          >.
         </p>
-        <a
-          class="btn btn-primary disabled placeholder col-6"
-          aria-disabled="true"
-          >Coming soon...</a
+        <a href="{{ url_for('drugformulary.index') }}" class="btn btn-primary"
+          >Test Endpoints</a
         >
       </div>
     </div>
