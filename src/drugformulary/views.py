@@ -111,6 +111,37 @@ def medicationknowledge_test():
                                medicationknowledge.search_parameter_comments))
 
 
+# Route - Test MedicationKnowledge Required Data Elements with 10 Random Entries
+@drugformulary_bp.route('/drugformulary/medicationknowledge_required',
+                        methods=['GET'])
+def medicationknowledge_required():
+    """Test MedicationKnowledge Required Data Elements with 10 Random Entries"""
+    base_url = request.args.get('base_url')
+    try:
+        entries = medicationknowledge.get_entries(base_url)
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+        return render_template('global/results_required.html',
+                               title='Flame Check - Required Data Elements',
+                               results=results,)
+
+    # Loop through the entries and get the various fields
+    results = []
+    for entry in entries:
+        results.append({
+            '_id': medicationknowledge.get_id(entry),
+            '_lastUpdated': medicationknowledge.get_last_updated(entry),
+            'code': medicationknowledge.get_code(entry),
+            'drug-name': medicationknowledge.get_drug_name(entry),
+            'status': medicationknowledge.get_status(entry),
+            'doseform': medicationknowledge.get_doseform(entry),
+        })
+
+    return render_template('global/results_required.html',
+                           title='Flame Check - Required Data Elements',
+                           results=results,)
+
+
 # Route - Test List Search Parameters
 @drugformulary_bp.route('/drugformulary/list_test',
                         methods=['GET'])
@@ -141,3 +172,32 @@ def list_test():
                            results=results,
                            search_parameter_comments=(
                                lists.search_parameter_comments))
+
+
+# Route - Test List Required Data Elements with 10 Random Entries
+@drugformulary_bp.route('/drugformulary/list_required',
+                        methods=['GET'])
+def list_required():
+    """Test List Required Data Elements with 10 Random Entries"""
+    base_url = request.args.get('base_url')
+    try:
+        entries = lists.get_entries(base_url)
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+        return render_template('global/results_required.html',
+                               title='Flame Check - Required Data Elements',
+                               results=results,)
+
+    # Loop through the entries and get the various fields
+    results = []
+    for entry in entries:
+        results.append({
+            '_id': lists.get_id(entry),
+            '_lastUpdated': lists.get_last_updated(entry),
+            'identifier': lists.get_identifier(entry),
+            'status': lists.get_status(entry),
+        })
+
+    return render_template('global/results_required.html',
+                           title='Flame Check - Required Data Elements',
+                           results=results,)

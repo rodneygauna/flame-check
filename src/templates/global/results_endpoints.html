@@ -20,7 +20,7 @@
     <tr>
       <th>Endpoint</th>
       <th>Total Entries</th>
-      <th>Test Search Parameters</th>
+      <th>Test Endpoint</th>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +31,15 @@
       <td>
         <a
           class="btn btn-primary"
+          {% if endpoint == 'MedicationKnowledge' %}
+            href="{{ url_for('drugformulary.medicationknowledge_required', base_url=base_url) }}"
+          {% elif endpoint == 'List' %}
+            href="{{ url_for('drugformulary.list_required', base_url=base_url) }}"
+          {% endif %}
+          >Test Required Data</a
+        >
+        <a
+          class="btn btn-success"
           {% if endpoint == 'Practitioner' %}
             href="{{ url_for('provdir.practitioner_test', base_url=base_url) }}"
           {% elif endpoint == 'Organization' %}
@@ -45,11 +54,11 @@
             href="#"
           {% elif endpoint == 'PractitionerRole' %}
             href="{{ url_for('provdir.practitionerrole_test', base_url=base_url) }}"
-          {% elif endpoint == 'InsurancePlan' %}\
+          {% elif endpoint == 'InsurancePlan' %}
             href="{{ url_for('provdir.insuranceplan_test', base_url=base_url) }}"
-          {% elif endpoint == 'List' %}\
+          {% elif endpoint == 'List' %}
             href="{{ url_for('drugformulary.list_test', base_url=base_url) }}"
-          {% elif endpoint == 'MedicationKnowledge' %}\
+          {% elif endpoint == 'MedicationKnowledge' %}
             href="{{ url_for('drugformulary.medicationknowledge_test', base_url=base_url) }}"
           {% endif %}
           >Test Search Parameters</a

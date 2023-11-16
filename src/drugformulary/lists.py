@@ -5,6 +5,7 @@ List Endpoint
 
 # Imports
 import requests
+import random
 
 
 # List Comments
@@ -28,6 +29,24 @@ def get_first_entry(base_url):
         return data['entry'][0]
     except requests.exceptions.RequestException as e:
         raise ValueError(f"Failed to get first entry: {e}") from e
+
+
+def get_entries(base_url):
+    """Get 10 random entries from the List endpoint"""
+    try:
+        response = requests.get(
+            base_url + "fhirformulary/List", timeout=60)
+        response.raise_for_status()
+        data = response.json()
+        total = data['total']
+        if total == 0:
+            return []
+        elif total <= 10:
+            return data['entry']
+        else:
+            return random.sample(data['entry'], 10)
+    except requests.exceptions.RequestException as e:
+        raise ValueError(f"Failed to get entries: {e}") from e
 
 
 def get_identifier(first_entry):
