@@ -11,7 +11,7 @@ build:
 
 # Run the Docker container
 run:
-	$(DOCKER_COMPOSE) up
+	$(DOCKER_COMPOSE) up -d
 
 # Build and run the Docker container
 up:
