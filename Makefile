@@ -1,5 +1,5 @@
 # Makefile
-.PHONY: build run up stop clean logs sh
+.PHONY: build run up stop clean logs sh restart
 
 # Docker-related variables
 DOCKER_COMPOSE = docker-compose
@@ -32,3 +32,6 @@ logs:
 # Container shell
 sh:
 	$(DOCKER_COMPOSE) exec app sh
+
+# Restart the container
+restart: stop run
