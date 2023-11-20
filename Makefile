@@ -32,6 +32,6 @@ clean:
 logs:
 	$(DOCKER_COMPOSE) logs --tail=100 -f
 
-# Container shell
-sh:
-	$(DOCKER_COMPOSE) exec app sh
+# Container bash
+bash:
+	$(DOCKER_COMPOSE) exec app /bin/bash
