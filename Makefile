@@ -1,5 +1,5 @@
 # Makefile
-.PHONY: build run up stop clean logs bash
+.PHONY: build run up stop restart clean logs sh
 
 # Docker-related variables
 DOCKER_COMPOSE = docker-compose
@@ -20,6 +20,9 @@ up:
 # Stop and remove the Docker container
 stop:
 	$(DOCKER_COMPOSE) down
+
+# Stop and run the Docker container
+restart: stop up
 
 # Clean up Docker images and volumes
 clean:
