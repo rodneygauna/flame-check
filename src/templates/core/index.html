@@ -1,44 +1,12 @@
 {% extends 'base.html' %} {% block content %}
-<div class="row">
-  <h1>Welcome to Flame Check</h1>
-  <p>
-    Flame Check is a user-friendly web application designed to simplify the
-    testing process for FHIR (Fast Healthcare Interoperability Resources) APIs.
-    With Flame Check, users can effortlessly evaluate the functionality of their
-    FHIR API by testing a set of supported "shall" search parameters.
-  </p>
-  <p>
-    This innovative tool doesn't just stop at identifying search parameter
-    failures; it goes a step further by providing invaluable guidance. When a
-    search parameter fails, Flame Check offers clear insights into the missing
-    data and suggests precisely where to populate it within the data upload
-    process. This guidance is instrumental, particularly for users working with
-    ODS (Organization Data Service) flat files, as it streamlines the data
-    integration process and ensures the API functions seamlessly.
-  </p>
-  <p>
-    In essence, Flame Check empowers healthcare professionals and developers to
-    effortlessly verify the performance of their FHIR APIs while offering expert
-    guidance on resolving issues. It's a reliable companion in the quest for
-    interoperability and efficient healthcare data exchange.
-  </p>
-</div>
+<h1>Home</h1>
 <div class="row">
   <div class="col">
-    <div class="card" aria-hidden="true">
+    <div class="card">
       <div class="card-body">
         <h5 class="card-title">Patient Access API</h5>
-        <p class="card-text placeholder-glow">
-          <span class="placeholder col-4"></span>
-          <span class="placeholder col-6"></span>
-          <span class="placeholder col-8"></span>
-          <span class="placeholder col-2"></span>
-        </p>
-        <a
-          class="btn btn-primary disabled placeholder col-6"
-          aria-disabled="true"
-          >Coming soon...</a
-        >
+        <p class="card-text">Coming soon...</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   </div>
@@ -47,36 +15,21 @@
       <div class="card-body">
         <h5 class="card-title">Provider Directory API</h5>
         <p class="card-text">
-          Test the
-          <a
-            href="https://build.fhir.org/ig/HL7/davinci-pdex-plan-net/CapabilityStatement-plan-net.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Provider Directory API search paramters</a
-          >.
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
         </p>
         <a href="{{ url_for('provdir.index') }}" class="btn btn-primary"
-          >Test Endpoints</a
+          >Go somewhere</a
         >
       </div>
     </div>
   </div>
   <div class="col">
-    <div class="card" aria-hidden="true">
+    <div class="card">
       <div class="card-body">
         <h5 class="card-title">Drug Formulary API</h5>
-        <p class="card-text">
-          Test the
-          <a
-            href="https://build.fhir.org/ig/HL7/davinci-pdex-formulary/CapabilityStatement-usdf-server.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Drug Formualry API search paramters</a
-          >.
-        </p>
-        <a href="{{ url_for('drugformulary.index') }}" class="btn btn-primary"
-          >Test Endpoints</a
-        >
+        <p class="card-text">Coming soon...</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   </div>

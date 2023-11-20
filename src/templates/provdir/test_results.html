@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Test Results</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Total Entries</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for endpoint, total_entries in results.items() %}
+    <tr>
+      <td>{{ endpoint }}</td>
+      <td>{{ total_entries }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}
