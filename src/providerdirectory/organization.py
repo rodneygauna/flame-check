@@ -14,8 +14,14 @@ search_parameter_comments = {
     'address-city': 'payor_address.city or medical_group_address.city',
     'address-state': 'payor_address.state or medical_group_address.state',
     'address-postalcode': 'payor_address.zip or medical_group_address.zip',
-    'address': 'Generated from payor_address.address1, payor_address.address2, payor_address.city, payor_address.state, payor_address.zip, and payor_address.country or medical_group_address.address1, medical_group_address.address2, medical_group_address.city, medical_group_address.state, medical_group_address.zip, and medical_group_address.country',
-    'name': 'TODO: Find out the mapping for this field',
+    'address': 'Generated from payor_address.address1, payor_address.address2,'
+               ' payor_address.city, payor_address.state, payor_address.zip,'
+               ' and '
+               'payor_address.country or medical_group_address.address1, '
+               'medical_group_address.address2, medical_group_address.city, '
+               'medical_group_address.state, medical_group_address.zip, and '
+               'medical_group_address.country',
+    'name': 'medical_group.medical_group_name',
     'type': 'HealthTrio populates "pay" for this field',
     'coverage-area': 'Currently not supported by HealthTrio',
     '_id': 'payor.payor_id or medical_group.external_medical_group_id',

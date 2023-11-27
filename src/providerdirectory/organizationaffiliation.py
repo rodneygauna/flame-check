@@ -9,14 +9,20 @@ import requests
 
 # OrganizationAffiliation Comments
 search_parameter_comments = {
-    'primary-organization': 'References PlannetOrganization (medical_group.external_medical_group_id)',
-    'participating-organization': 'References PlannetOrganization (medical_group.external_medical_group_id)',
+    'primary-organization': 'References PlannetOrganization '
+                            ' (medical_group.external_medical_group_id)',
+    'participating-organization': 'References PlannetOrganization'
+                                  ' (medical_group.external_medical_group_id)',
     'network': 'References PlannetNetwork (network.network_name)',
     'endpoint': 'Currently not supported by HealthTrio',
-    'location': 'References PlannetLocation (medical_group_address.address_id)',
-    'service': 'References PlannetHealthcareService (Combination of medical_group_address.provider_id, medical_group_address.medical_group_id, and medical_group_address.address_id)',
+    'location': 'References PlannetLocation'
+                ' (medical_group_address.address_id)',
+    'service': 'References PlannetHealthcareService'
+               ' (Combination of medical_group_address.provider_id, '
+               'medical_group_address.medical_group_id, '
+               'and medical_group_address.address_id)',
     'role': 'Currently not supported by HealthTrio',
-    'specialty': 'TODO: Find the mapping for this field (maybe it is something like payor.taxonomy_code)',
+    'specialty': 'provider_medical_group_contract.taxonomy_code',
     '_id': 'medical_group.external_medical_group_id',
     '_lastUpdated': 'medical_group.external_change_date'
 }

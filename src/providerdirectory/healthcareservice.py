@@ -15,7 +15,7 @@ search_parameter_comments = {
     '(medical_group.external_medical_group_id)',
     'endpoint': 'Currently not supported by HealthTrio',
     'coverage-area': 'Currently not supported by HealthTrio',
-    'name': 'TODO: Find out the mapping for this field',
+    'name': 'medical_group.medical_group_name',
     'service-category': 'Code value: '
                         'provider_payor_provservicetypes.provservicetype '
                         'Display value: '
