@@ -35,8 +35,20 @@
             href="{{ url_for('drugformulary.medicationknowledge_required', base_url=base_url) }}"
           {% elif endpoint == 'List' %}
             href="{{ url_for('drugformulary.list_required', base_url=base_url) }}"
-            {% elif endpoint == 'HealthcareService' %}
+          {% elif endpoint == 'HealthcareService' %}
             href="{{ url_for('provdir.healthcareservice_required', base_url=base_url) }}"
+          {% elif endpoint == 'InsurancePlan' %}
+            href="{{ url_for('provdir.insuranceplan_required', base_url=base_url) }}"
+          {% elif endpoint == 'Location' %}
+            href="{{ url_for('provdir.location_required', base_url=base_url) }}"
+          {% elif endpoint == 'Organization' %}
+            href="{{ url_for('provdir.organization_required', base_url=base_url) }}"
+          {% elif endpoint == 'OrganizationAffiliation' %}
+            href="{{ url_for('provdir.organizationaffiliation_required', base_url=base_url) }}"
+          {% elif endpoint == 'Practitioner' %}
+            href="{{ url_for('provdir.practitioner_required', base_url=base_url) }}"
+          {% elif endpoint == 'PractitionerRole' %}
+            href="{{ url_for('provdir.practitionerrole_required', base_url=base_url) }}"
           {% endif %}
           >Test Required Data</a
         >

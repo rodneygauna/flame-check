@@ -193,6 +193,35 @@ def insuranceplan_test():
                                insuranceplan.search_parameter_comments))
 
 
+# Route - Test InsurancePlan Required Data Elements
+@provdir_bp.route('/insuranceplan_required', methods=['GET'])
+def insuranceplan_required():
+    """
+    Test InsurancePlan Required Data Elements with 10 Random Entries
+    """
+    base_url = request.args.get('base_url')
+    try:
+        entries = get_entries(base_url, 'InsurancePlan')
+        results = [
+            {
+                '_id': insuranceplan.get_id(entry),
+                '_lastUpdated': insuranceplan.get_last_updated(entry),
+                'administered-by': insuranceplan.get_administer_by(entry),
+                'owned-by': insuranceplan.get_owned_by(entry),
+                'coverage-area': insuranceplan.get_coverage_area(entry),
+                'name': insuranceplan.get_name(entry),
+                'plan-type': insuranceplan.get_plan_type(entry),
+                'identifier': insuranceplan.get_identifier(entry),
+            } for entry in entries
+        ]
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+
+    return render_template('global/results_required.html',
+                           title='Flame Check - Required Data Elements',
+                           results=results,)
+
+
 # Route - Test Location Search Paramters
 @provdir_bp.route('/location_test', methods=['GET'])
 def location_test():
@@ -230,6 +259,37 @@ def location_test():
                                location.search_parameter_comments))
 
 
+# Route - Test Location Required Data Elements
+@provdir_bp.route('/location_required', methods=['GET'])
+def location_required():
+    """
+    Test Location Required Data Elements with 10 Random Entries
+    """
+    base_url = request.args.get('base_url')
+    try:
+        entries = get_entries(base_url, 'Location')
+        results = [
+            {
+                '_id': location.get_id(entry),
+                '_lastUpdated': location.get_last_updated(entry),
+                'partof': location.get_part_of(entry),
+                'organization': location.get_organization(entry),
+                'endpoint': location.get_endpoint(entry),
+                'address-city': location.get_address_city(entry),
+                'address-state': location.get_address_state(entry),
+                'address-postalcode': location.get_address_postalcode(entry),
+                'address': location.get_address(entry),
+                'type': location.get_type(entry),
+            } for entry in entries
+        ]
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+
+    return render_template('global/results_required.html',
+                           title='Flame Check - Required Data Elements',
+                           results=results,)
+
+
 # Route - Test Organization Search Paramters
 @provdir_bp.route('/organization_test', methods=['GET'])
 def organization_test():
@@ -265,6 +325,35 @@ def organization_test():
                            results=results,
                            search_parameter_comments=(
                                organization.search_parameter_comments))
+
+
+# Route - Test Organization Required Data Elements
+@provdir_bp.route('/organization_required', methods=['GET'])
+def organization_required():
+    """
+    Test Organization Required Data Elements with 10 Random Entries
+    """
+    base_url = request.args.get('base_url')
+    try:
+        entries = get_entries(base_url, 'Organization')
+        results = [
+            {
+                '_id': organization.get_id(entry),
+                '_lastUpdated': organization.get_last_updated(entry),
+                'partof': organization.get_part_of(entry),
+                'endpoint': organization.get_endpoint(entry),
+                'address': organization.get_address(entry),
+                'name': organization.get_name(entry),
+                'type': organization.get_type(entry),
+                'coverage-area': organization.get_coverage_area(entry)
+            } for entry in entries
+        ]
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+
+    return render_template('global/results_required.html',
+                           title='Flame Check - Required Data Elements',
+                           results=results,)
 
 
 # Route - Test OrganizationAffiliation Search Paramters
@@ -309,6 +398,38 @@ def organizationaffiliation_test():
                                oa.search_parameter_comments))
 
 
+# Route - Test OrganizationAffiliation Required Data Elements
+@provdir_bp.route('/organizationaffiliation_required', methods=['GET'])
+def organizationaffiliation_required():
+    """
+    Test OrganizationAffiliation Required Data Elements with 10 Random Entries
+    """
+    base_url = request.args.get('base_url')
+    try:
+        entries = get_entries(base_url, 'OrganizationAffiliation')
+        results = [
+            {
+                '_id': oa.get_id(entry),
+                '_lastUpdated': oa.get_last_updated(entry),
+                'primary-organization': oa.get_primary_organization(entry),
+                'participating-organization': oa.get_participating_organization(
+                    entry),
+                'location': oa.get_location(entry),
+                'service': oa.get_service(entry),
+                'network': oa.get_network(entry),
+                'endpoint': oa.get_endpoint(entry),
+                'role': oa.get_role(entry),
+                'specialty': oa.get_specialty(entry),
+            } for entry in entries
+        ]
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+
+    return render_template('global/results_required.html',
+                           title='Flame Check - Required Data Elements',
+                           results=results,)
+
+
 # Route - Test Practitioner Search Paramters
 @provdir_bp.route('/practitioner_test', methods=['GET'])
 def practitioner_test():
@@ -342,6 +463,32 @@ def practitioner_test():
                            search_parameter_comments=(
                                practitioner.search_parameter_comments
                            ))
+
+
+# Route - Test Practitioner Required Data Elements
+@provdir_bp.route('/practitioner_required', methods=['GET'])
+def practitioner_required():
+    """
+    Test Practitioner Required Data Elements with 10 Random Entries
+    """
+    base_url = request.args.get('base_url')
+    try:
+        entries = get_entries(base_url, 'Practitioner')
+        results = [
+            {
+                '_id': practitioner.get_id(entry),
+                '_lastUpdated': practitioner.get_last_updated(entry),
+                'name': practitioner.get_name(entry),
+                'family': practitioner.get_family(entry),
+                'given': practitioner.get_given(entry),
+            } for entry in entries
+        ]
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+
+    return render_template('global/results_required.html',
+                           title='Flame Check - Required Data Elements',
+                           results=results,)
 
 
 # Route - Test PractitionerRole Search Paramters
@@ -383,3 +530,34 @@ def practitionerrole_test():
                            search_parameter_comments=(
                                practitionerrole.search_parameter_comments
                            ))
+
+
+# Route - Test PractitionerRole Required Data Elements
+@provdir_bp.route('/practitionerrole_required', methods=['GET'])
+def practitionerrole_required():
+    """
+    Test PractitionerRole Required Data Elements with 10 Random Entries
+    """
+    base_url = request.args.get('base_url')
+    try:
+        entries = get_entries(base_url, 'PractitionerRole')
+        results = [
+            {
+                '_id': practitionerrole.get_id(entry),
+                '_lastUpdated': practitionerrole.get_last_updated(entry),
+                'practitioner': practitionerrole.get_practitioner(entry),
+                'organization': practitionerrole.get_organization(entry),
+                'location': practitionerrole.get_location(entry),
+                'service': practitionerrole.get_service(entry),
+                'network': practitionerrole.get_network(entry),
+                'endpoint': practitionerrole.get_endpoint(entry),
+                'role': practitionerrole.get_role(entry),
+                'specialty': practitionerrole.get_specialty(entry),
+            } for entry in entries
+        ]
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+
+    return render_template('global/results_required.html',
+                           title='Flame Check - Required Data Elements',
+                           results=results,)
