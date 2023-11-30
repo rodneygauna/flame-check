@@ -35,6 +35,8 @@
             href="{{ url_for('drugformulary.medicationknowledge_required', base_url=base_url) }}"
           {% elif endpoint == 'List' %}
             href="{{ url_for('drugformulary.list_required', base_url=base_url) }}"
+            {% elif endpoint == 'List' %}
+            href="{{ url_for('provdir.healthcareservice_required', base_url=base_url) }}"
           {% endif %}
           >Test Required Data</a
         >
