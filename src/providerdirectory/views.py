@@ -412,8 +412,8 @@ def organizationaffiliation_required():
                 '_id': oa.get_id(entry),
                 '_lastUpdated': oa.get_last_updated(entry),
                 'primary-organization': oa.get_primary_organization(entry),
-                'participating-organization': oa.get_participating_organization(
-                    entry),
+                'participating-organization':
+                    oa.get_participating_organization(entry),
                 'location': oa.get_location(entry),
                 'service': oa.get_service(entry),
                 'network': oa.get_network(entry),
@@ -422,6 +422,7 @@ def organizationaffiliation_required():
                 'specialty': oa.get_specialty(entry),
             } for entry in entries
         ]
+
     except requests.exceptions.RequestException as e:
         results = {'error': str(e)}
 
