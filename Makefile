@@ -34,4 +34,4 @@ sh:
 	$(DOCKER_COMPOSE) exec app sh
 
 # Restart the container
-restart: stop run
+restart: clean up
