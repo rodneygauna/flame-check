@@ -11,6 +11,7 @@ from flask import (
 
 from .test_connection import test_connection
 from .endpoint_totals import get_endpoint_total
+from .ten_random_entries import get_entries
 from . import (
     healthcareservice,
     practitioner,
@@ -124,6 +125,36 @@ def healthcareservice_test():
                            results=results,
                            search_parameter_comments=(
                                healthcareservice.search_parameter_comments))
+
+
+# Route - Test HealthcareService Required Data Elements
+@provdir_bp.route('/healthcareservice_required', methods=['GET'])
+def healthcareservice_required():
+    """
+    Test HealthcareService Required Data Elements with 10 Random Entries
+    """
+    base_url = request.args.get('base_url')
+    try:
+        entries = get_entries(base_url, 'HealthcareService')
+        results = [
+            {
+                '_id': healthcareservice.get_id(entry),
+                '_lastUpdated': healthcareservice.get_last_updated(entry),
+                'location': healthcareservice.get_location(entry),
+                'organization': healthcareservice.get_organization(entry),
+                'name': healthcareservice.get_name(entry),
+                'service-category': healthcareservice.get_service_category(
+                    entry),
+                'service-type': healthcareservice.get_service_type(entry),
+                'specialty': healthcareservice.get_specialty(entry),
+            } for entry in entries
+        ]
+    except requests.exceptions.RequestException as e:
+        results = {'error': str(e)}
+
+    return render_template('global/results_required.html',
+                           title='Flame Check - Required Data Elements',
+                           results=results,)
 
 
 # Route - Test InsurancePlan Search Paramters
