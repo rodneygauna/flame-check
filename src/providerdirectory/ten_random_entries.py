@@ -10,7 +10,7 @@ def get_entries(base_url, endpoint):
     """Get 10 random entries from the API endpoint"""
     try:
         response = requests.get(
-            base_url + "fhirformulary/" + endpoint, timeout=60)
+            base_url + "fhirprovdir/" + endpoint, timeout=60)
         response.raise_for_status()
         data = response.json()
         total = data['total']
