@@ -47,7 +47,7 @@ def get_part_of(first_entry):
     try:
         return first_entry['resource']['partOf']['reference']
     except KeyError:
-        return "Part Of not found"
+        return "HealthTrio does not support partof"
 
 
 def get_endpoint(first_entry):
@@ -55,7 +55,7 @@ def get_endpoint(first_entry):
     try:
         return first_entry['resource']['endpoint'][0]['reference']
     except KeyError:
-        return "Endpoint not found"
+        return "HealthTrio does not support endpoint"
 
 
 def get_address(first_entry):
@@ -87,7 +87,7 @@ def get_coverage_area(first_entry):
     try:
         return first_entry['resource']['coverageArea'][0]['reference']
     except KeyError:
-        return "Coverage Area not found"
+        return "HealthTrio does not support coverage area"
 
 
 def get_id(first_entry):

@@ -55,7 +55,7 @@ def get_coverage_area(first_entry):
     try:
         return first_entry['resource']['coverageArea'][0]['reference']
     except KeyError:
-        return "Coverage Area not found"
+        return "HealthTrio does not support coverage area"
 
 
 def get_name(first_entry):
@@ -71,7 +71,7 @@ def get_plan_type(first_entry):
     try:
         return first_entry['resource']['plan'][0]['type']['coding'][0]['display']
     except KeyError:
-        return "Plan Type not found"
+        return "HealthTrio does not support plan type"
 
 
 def get_identifier(first_entry):
@@ -79,7 +79,7 @@ def get_identifier(first_entry):
     try:
         return first_entry['resource']['identifier'][0]['value']
     except KeyError:
-        return "Identifier not found"
+        return "HealthTrio does not support identifier"
 
 
 def get_type(first_entry):

@@ -86,7 +86,7 @@ def get_endpoint(first_entry):
     try:
         return first_entry['resource']['endpoint'][0]['reference']
     except KeyError:
-        return "Endpoint not found"
+        return "HealthTrio does not support endpoint"
 
 
 def get_role(first_entry):
@@ -94,7 +94,7 @@ def get_role(first_entry):
     try:
         return first_entry['resource']['code'][0]['coding'][0]['code']
     except KeyError:
-        return "Role not found"
+        return "HealthTrio does not support role"
 
 
 def get_specialty(first_entry):

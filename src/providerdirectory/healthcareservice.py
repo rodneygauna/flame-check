@@ -63,7 +63,7 @@ def get_endpoint(first_entry):
     try:
         return first_entry['resource']['endpoint'][0]['reference']
     except KeyError:
-        return "Endpoint not found"
+        return "HealthTrio does not support endpoint"
 
 
 def get_coverage_area(first_entry):
@@ -71,7 +71,7 @@ def get_coverage_area(first_entry):
     try:
         return first_entry['resource']['coverageArea'][0]['reference']
     except KeyError:
-        return "Coverage Area not found"
+        return "HealthTrio does not support coverage area"
 
 
 def get_name(first_entry):

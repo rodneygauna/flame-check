@@ -40,7 +40,7 @@ def get_part_of(first_entry):
     try:
         return first_entry['resource']['partOf']['reference']
     except KeyError:
-        return "PartOf not found"
+        return "HealthTrio does not support partof"
 
 
 def get_organization(first_entry):
@@ -56,7 +56,7 @@ def get_endpoint(first_entry):
     try:
         return first_entry['resource']['endpoint'][0]['reference']
     except KeyError:
-        return "Endpoint not found"
+        return "HealthTrio does not support endpoint"
 
 
 def get_address_city(first_entry):
@@ -96,7 +96,7 @@ def get_type(first_entry):
     try:
         return first_entry['resource']['type'][0]['coding'][0]['code']
     except KeyError:
-        return "Type not found"
+        return "HealthTrio does not support type"
 
 
 def get_id(first_entry):
